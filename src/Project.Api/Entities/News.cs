@@ -1,10 +1,11 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using Project.Api.Entities.Enums;
 
 namespace Project.Api.Entities
 {
     public class News : BaseEntity
     {
-        public News(string hat, string title, string text, string author, string img, string link, DateTime publishDate, bool active)
+        public News(string hat, string title, string text, string author, string img, string link,  Status status)
         {
             Hat = hat;
             Title = title;
@@ -13,7 +14,25 @@ namespace Project.Api.Entities
             Img = img;
             Link = link;
             PublishDate = DateTime.Now;
-            Active = active;
+            Status = status;
+        }
+
+        public Status ChangeStatus(Status status)
+        {
+            switch (status) 
+            {
+                case Status.Active:
+                    status = Status.Active;
+                    break;
+                case Status.Inactive:
+                    status = Status.Inactive;
+                    break;
+                case Status.Draft:
+                    status = Status.Draft;
+                    break;
+            }
+
+            return status;
         }
 
         [BsonElement("hat")]
@@ -38,7 +57,7 @@ namespace Project.Api.Entities
         public DateTime PublishDate { get; private set; }
 
         [BsonElement("active")]
-        public bool Active { get; private set; }
+        public Status Status { get; private set; }
     }
 
 }
