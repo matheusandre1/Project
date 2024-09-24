@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+using Project.Api.Infra;
 using Project.Api.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(EntityToViewModelMapping), typeof(ViewModelToEntityMapping));
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
+builder.Services.AddSingleton<IDatabaseSettings>(sp =>
+    sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
+builder.Services.AddSingleton(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
 
 var app = builder.Build();
