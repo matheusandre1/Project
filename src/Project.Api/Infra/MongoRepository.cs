@@ -6,7 +6,7 @@ namespace Project.Api.Infra
     public interface IMongoRepository<T>
     {
         List<T> Get();
-        T  Get(string id);
+        T  GetById(string id);
         T Create(T news);
         void Update(string id, T news);
         void Remove(string id);
@@ -24,7 +24,7 @@ namespace Project.Api.Infra
         }
 
         public List<T> Get() => _model.Find(active => true).ToList();
-        public T Get(string id) => _model.Find<T>(news => news.Id == id).FirstOrDefault();
+        public T GetById(string id) => _model.Find<T>(news => news.Id == id).FirstOrDefault();
 
         public T Create(T news)
         {
