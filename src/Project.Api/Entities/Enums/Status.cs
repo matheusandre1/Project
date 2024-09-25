@@ -4,6 +4,6 @@
     {
         Active = 1,
         Inactive = 2,
-        Draft = 3
+        Draft = 3,
     }
 }

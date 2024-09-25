@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Project.Api.Controllers
+namespace Project.Api.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class NewsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class NewsController : ControllerBase
-    {
-    }
+    
 }

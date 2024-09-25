@@ -1,14 +1,15 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Project.Api.Entities.Enums;
 
 namespace Project.Api.Entities
 {
     public class News : BaseEntity
     {
-        public News(string hat, string title, string text, string author, string img, string link,  Status status)
+        public News(string hat, string title, string text, string author, string img, string link, DateTime publishDate, Status status)
         {
-            Hat = hat;
-            Title = title;
+            Hat= hat;
+            Title= title;
             Text = text;
             Author = author;
             Img = img;
@@ -19,7 +20,7 @@ namespace Project.Api.Entities
 
         public Status ChangeStatus(Status status)
         {
-            switch (status) 
+            switch (status)
             {
                 case Status.Active:
                     status = Status.Active;
@@ -32,32 +33,31 @@ namespace Project.Api.Entities
                     break;
             }
 
-            return status;
+            return Status;
         }
-
         [BsonElement("hat")]
-        public string Hat { get; private set; } = string.Empty;
+        public string Hat { get; private set; }
 
         [BsonElement("title")]
-        public string Title { get; private set; } = string.Empty;
+        public string Title { get; private set; }
 
         [BsonElement("text")]
-        public string Text { get; private set; } = string.Empty;
+        public string Text { get; private set; }
 
         [BsonElement("author")]
-        public string Author { get; private set; } = string.Empty;
+        public string Author { get; private set; }
 
         [BsonElement("img")]
-        public string Img { get; private set; } = string.Empty;
+        public string Img { get; private set; }
 
         [BsonElement("link")]
-        public string Link { get; private set; } = string.Empty;
+        public string Link { get; private set; }
 
-        [BsonElement("publishDate")]
+        [BsonElement("date")]
         public DateTime PublishDate { get; private set; }
 
-        [BsonElement("active")]
+        [BsonElement("")]
         public Status Status { get; private set; }
-    }
 
+    }
 }
