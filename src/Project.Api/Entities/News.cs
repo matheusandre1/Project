@@ -6,7 +6,7 @@ namespace Project.Api.Entities
 {
     public class News : BaseEntity
     {
-        public News(string hat, string title, string text, string author, string img, string link, DateTime publishDate, Status status)
+        public News(string hat, string title, string text, string author, string img, string link, Status status)
         {
             Hat= hat;
             Title= title;
