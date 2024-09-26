@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using Project.Api.Entities.ViewModels;
 using Project.Api.Services;
 
@@ -31,7 +33,7 @@ public class NewsController : ControllerBase
             return NotFound();
         }
 
-        return news;
+        return Ok(news);
 
     } 
     [HttpPost]
@@ -41,4 +43,40 @@ public class NewsController : ControllerBase
 
         return CreatedAtRoute("GetNews", new { id = result.Id.ToString() }, result);   
     }
+
+    [HttpPut("{id:length(24)}")]
+    public IActionResult Update(string id, NewsViewModel newsIn) 
+    {
+        var news = _newsService.Get(id);
+
+        if(news is null)
+        {
+            return NotFound();
+        }
+
+        _newsService.Update(id, newsIn);
+
+        return CreatedAtRoute("GetNews", new { id = id }, newsIn);
+        
+    }
+
+    [HttpDelete]
+    public IActionResult Delete(string id)
+    {
+        var news = _newsService.Get(id);
+
+        if (news is null)
+        {
+            return NotFound();
+        }
+
+        _newsService.Remove(news.Id);
+
+        return NoContent();
+
+    }
+
+
+
 }
+

@@ -34,7 +34,7 @@ namespace Project.Api.Infra
             return news;
         }
 
-        public void Update(string id, T news) => _model.ReplaceOne(news => news.Id == id, news);        
+        public void Update(string id, T newsIn) => _model.ReplaceOne(news => news.Id == id, newsIn);        
 
         public void Remove(string id) => _model.DeleteOne(news  => news.Id == id);
         
