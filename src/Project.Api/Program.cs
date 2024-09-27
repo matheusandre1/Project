@@ -1,4 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
+using Project.Api.Entities;
+using Project.Api.Entities.Validators;
 using Project.Api.Infra;
 using Project.Api.Mappers;
 using Project.Api.Services;
@@ -18,6 +23,11 @@ builder.Services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOpti
 builder.Services.AddSingleton(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 builder.Services.AddSingleton<NewsService>();
 builder.Services.AddAutoMapper(typeof(EntityToViewModelMapping), typeof(ViewModelToEntityMapping));
+builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true);
+
+builder.Services.AddScoped<IValidator<News>, NewsValidator>(); 
+
+builder.Services.AddCors();
 
 
 
@@ -30,6 +40,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Imagens")),
+    RequestPath = "/img"
+});
 
 app.UseHttpsRedirection();
 

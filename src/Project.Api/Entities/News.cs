@@ -6,14 +6,13 @@ namespace Project.Api.Entities
 {
     public class News : BaseEntity
     {
-        public News(string hat, string title, string text, string author, string img, string link, Status status)
+        public News(string hat, string title, string text, string author, string img,Status status)
         {
             Hat= hat;
             Title= title;
             Text = text;
             Author = author;
-            Img = img;
-            Link = link;
+            Img = img;            
             PublishDate = DateTime.Now;
             Status = status;
         }
@@ -48,10 +47,7 @@ namespace Project.Api.Entities
         public string Author { get; private set; }
 
         [BsonElement("img")]
-        public string Img { get; private set; }
-
-        [BsonElement("link")]
-        public string Link { get; private set; }
+        public string Img { get; private set; }          
 
         [BsonElement("date")]
         public DateTime PublishDate { get; private set; }

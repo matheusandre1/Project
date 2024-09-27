@@ -72,7 +72,7 @@ public class NewsController : ControllerBase
 
         _newsService.Remove(news.Id);
 
-        return NoContent();
+        return Ok();
 
     }
 

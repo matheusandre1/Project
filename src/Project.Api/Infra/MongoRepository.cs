@@ -23,9 +23,9 @@ namespace Project.Api.Infra
             _model = database.GetCollection<T>(typeof(T).Name.ToLower());
         }
 
-        public List<T> Get() => _model.Find(active => true).ToList();
+        public List<T> Get() => _model.Find(news => news.Deleted == false).ToList();
 
-        public T Get(string id) => _model.Find(active => active.Id == id).FirstOrDefault();
+        public T Get(string id) => _model.Find(news => news.Id == id && news.Deleted == false).FirstOrDefault();
 
         public T Create(T news)
         {
@@ -34,10 +34,15 @@ namespace Project.Api.Infra
             return news;
         }
 
-        public void Update(string id, T newsIn) => _model.ReplaceOne(news => news.Id == id, newsIn);        
+        public void Update(string id, T newsIn) => _model.ReplaceOne(news => news.Id == id, newsIn);
 
-        public void Remove(string id) => _model.DeleteOne(news  => news.Id == id);
-        
+        public void Remove(string id)
+        {
+            var news = Get(id);
+
+            news.Deleted = true;
+            _model.ReplaceOne(news => news.Id == id, news);
+        }
 
         
     }
