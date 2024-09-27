@@ -35,25 +35,25 @@ namespace Project.Api.Entities
             return Status;
         }
         [BsonElement("hat")]
-        public string Hat { get; private set; }
+        public string Hat { get;  set; }
 
         [BsonElement("title")]
-        public string Title { get; private set; }
+        public string Title { get;  set; }
 
         [BsonElement("text")]
-        public string Text { get; private set; }
+        public string Text { get;  set; }
 
         [BsonElement("author")]
-        public string Author { get; private set; }
+        public string Author { get; set; }
 
         [BsonElement("img")]
-        public string Img { get; private set; }          
+        public string Img { get;  set; }          
 
         [BsonElement("date")]
-        public DateTime PublishDate { get; private set; }
+        public DateTime PublishDate { get;  set; }
 
         [BsonElement("")]
-        public Status Status { get; private set; }
+        public Status Status { get;  set; }
 
     }
 }

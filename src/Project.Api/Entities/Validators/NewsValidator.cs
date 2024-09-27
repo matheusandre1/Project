@@ -13,15 +13,21 @@ namespace Project.Api.Entities.Validators
 
             RuleFor(x => x.Title)
                 .NotEmpty()
-                .NotNull()
-                .MinimumLength(5)
+                .NotNull()                
                 .WithMessage("The Title is mandatory");
+
+            RuleFor(x => x.Title)
+                .MinimumLength(5)
+                .WithMessage("The Title must be longer than 5 characters.");
 
             RuleFor(x => x.Text)
                 .NotEmpty()
-                .NotNull()
-                .MinimumLength(20)
+                .NotNull()                
                 .WithMessage("The Title is mandatory");
+
+            RuleFor(x => x.Text)
+                .MinimumLength(20)
+                .WithMessage("The Title must be longer than 20 characters.");
 
             RuleFor(x => x.Author)
                 .NotEmpty()
