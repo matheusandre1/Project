@@ -1,6 +1,5 @@
 ﻿using AutoFixture;
 using FluentAssertions;
-using FluentAssertions.Equivalency;
 using FluentValidation.TestHelper;
 using Project.Api.Entities;
 using Project.Api.Entities.Enums;

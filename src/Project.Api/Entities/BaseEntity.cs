@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Project.Api.Entities.Enums;
 
 namespace Project.Api.Entities
 {
@@ -11,5 +12,12 @@ namespace Project.Api.Entities
 
         public bool Deleted { get; set; }
         
+        public string Slug { get; set; }
+
+        [BsonElement("date")]
+        public DateTime PublishDate { get; set; }
+
+        [BsonElement("")]
+        public Status Status { get; set; }
     }
 }

@@ -47,13 +47,6 @@ namespace Project.Api.Entities
         public string Author { get; set; }
 
         [BsonElement("img")]
-        public string Img { get;  set; }          
-
-        [BsonElement("date")]
-        public DateTime PublishDate { get;  set; }
-
-        [BsonElement("")]
-        public Status Status { get;  set; }
-
+        public string Img { get;  set; }  
     }
 }

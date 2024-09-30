@@ -21,6 +21,8 @@ namespace Project.Api.Services
 
         public NewsViewModel Get(string id) => _mapper.Map<NewsViewModel>(_news.Get(id));
 
+        public NewsViewModel GetBySlug(string slug) => _mapper.Map<NewsViewModel>(_news.GetBySlug(slug));
+
         public NewsViewModel Create(NewsViewModel news) 
         {
             var entity = new News(news.Hat, news.Title, news.Text, news.Author, news.Img, news.Status);

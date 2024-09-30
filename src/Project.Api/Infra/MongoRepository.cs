@@ -7,6 +7,7 @@ namespace Project.Api.Infra
     {
         List<T> Get();
         T Get(string id);
+        T GetBySlug(string slug);
         T Create(T news);
         void Update(string id, T news);
         void Remove(string id);
@@ -44,6 +45,7 @@ namespace Project.Api.Infra
             _model.ReplaceOne(news => news.Id == id, news);
         }
 
+        public T GetBySlug(string slug) => _model.Find<T>(news => news.Slug == slug && news.Deleted == false).FirstOrDefault();
         
     }
 }
