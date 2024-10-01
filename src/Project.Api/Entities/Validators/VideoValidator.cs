@@ -22,12 +22,12 @@ namespace Project.Api.Entities.Validators
                 .WithMessage("The Author is mandatory");
 
             RuleFor(x => x.Thumbnail)
-                .NotEmpty()
-                .NotEmpty()
+                .NotNull()
+                .NotEmpty()                
                 .WithMessage("The Thumbnail is mandatory");
 
             RuleFor(x => x.Url)
-                .NotEmpty()
+                .NotNull()
                 .NotEmpty()
                 .WithMessage("The Url is mandatory");
 

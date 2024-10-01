@@ -1,9 +1,11 @@
 ﻿using AutoFixture;
 using FluentAssertions;
+using FluentAssertions.Equivalency;
 using FluentValidation.TestHelper;
 using Project.Api.Entities;
 using Project.Api.Entities.Enums;
 using Project.Api.Entities.Validators;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project.Api.UnitTests.Validators
 {
@@ -18,7 +20,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_All_Fields_When_Validated_ReturnNoError()
+        public void GivenAllFields_When_Validated_ThenReturnNoError()
         {
             // Arrange
 
@@ -33,7 +35,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_Null_Hat_Field_Returns_ErrorMessage()
+        public void GivenNullHatField_When_Validated_ThenReturnsErrorMessage()
         {
             var request = _fixture
                 .Build<News>()
@@ -44,11 +46,11 @@ namespace Project.Api.UnitTests.Validators
                 var result = _newsValidator.TestValidate(request);
 
 
-            result.Errors.Should().NotBeNull(); 
+            result.Errors.Should().NotBeNull();
         }
 
         [Fact]
-        public void Given_The_Empty_Hat_Field_It_Returns_An_Error()
+        public void GivenTheEmptyHatField_When_Validated_ThenItReturnsAnError()
         {
             var request = _fixture
                 .Build<News>()
@@ -62,7 +64,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_The_Null_Title_Field_It_Returns_An_Error()
+        public void GivenTheNullTitleField_WhenValidated_ThenItReturnsAnError()
         {
             // Arrange
             var request = _fixture
@@ -78,7 +80,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_The_Empty_Title_Field_It_Returns_An_Error()
+        public void GivenTheEmptyTitleField_WhenValidated_ThenItReturnsAnError()
         {
             // Arrange
             var request = _fixture
@@ -94,7 +96,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_the_Title_Field_If_It_Is_Less_Than_5_Characters_It_Returns_an_Error()
+        public void GiventheTitleFieldIfItIsLessThan5CharactersWhenValidate_ThenItReturnsanError()
         {
             var request = _fixture
                 .Build<News>()
@@ -108,7 +110,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_The_Null_Text_Field_It_Returns_An_Error()
+        public void GivenTheNullTextField_WhenValidate_ThenItReturnsAnError()
         {
             // Arrange
 
@@ -126,7 +128,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_The_Empty_Text_Field_It_Returns_An_Error()
+        public void GivenTheEmptyTextFieldWhenValidate_ThenItReturnsAnError()
         {
             // Arrange
 
@@ -143,7 +145,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_the_Text_Field_If_It_Is_Less_Than_20_Characters_It_Returns_an_Error()
+        public void GiventheTextFieldIfItIsLessThan20Characters_WhenValidate_ThenItReturnsanError()
         {
             var request = _fixture
                 .Build<News>()
@@ -158,7 +160,7 @@ namespace Project.Api.UnitTests.Validators
 
         [Fact]
 
-        public void Given_The_Field_Author_Null_It_Returns_An_Error()
+        public void GivenTheFieldAuthorNull_WhenValidate_ThenItReturnsAnError()
         {
             // Arrange
 
@@ -175,7 +177,7 @@ namespace Project.Api.UnitTests.Validators
         }
 
         [Fact]
-        public void Given_The_Field_Author_Empty_It_Returns_An_Error()
+        public void GivenTheFieldAuthor_Empty_WhenValidate_ThenItReturnsAnError()
         {
             // Arrange
             var request = _fixture

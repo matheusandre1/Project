@@ -24,6 +24,7 @@ namespace Project.Api.Entities
 
         [BsonElement("author")]
         public string Author { get; set; }
+
         [BsonElement("thumbnail")]
         public string Thumbnail { get; set; }
 
