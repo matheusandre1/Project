@@ -12,28 +12,34 @@ namespace Project.Api.Entities.Validators
                 .WithMessage("The Hat is mandatory");
 
             RuleFor(x => x.Title)
-                .NotEmpty()
                 .NotNull()
+                .WithMessage("The Title is mandatory")
+                .NotEmpty()
                 .WithMessage("The Title is mandatory");
 
             RuleFor(x => x.Author)
                 .NotNull()
+                .WithMessage("The Author is mandatory")
                 .NotEmpty()
                 .WithMessage("The Author is mandatory");
 
             RuleFor(x => x.Thumbnail)
                 .NotNull()
-                .NotEmpty()                
+                .WithMessage("The Thumbnail is mandatory")
+                .NotEmpty()
                 .WithMessage("The Thumbnail is mandatory");
 
             RuleFor(x => x.Url)
                 .NotNull()
+                .WithMessage("The Url is mandatory")
                 .NotEmpty()
                 .WithMessage("The Url is mandatory");
 
             RuleFor(x => x.Status)
                 .NotEmpty()
+                .WithMessage("The Slug is mandatory")
                 .NotNull()
+                .WithMessage("The Slug is mandatory")
                 .IsInEnum()
                 .WithMessage("The Slug is mandatory");
 

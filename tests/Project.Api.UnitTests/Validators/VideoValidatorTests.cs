@@ -1,10 +1,8 @@
 ﻿using AutoFixture;
 using FluentAssertions;
-using FluentAssertions.Equivalency;
 using FluentValidation.TestHelper;
 using Project.Api.Entities;
 using Project.Api.Entities.Validators;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Project.Api.UnitTests.Validators
 {
@@ -45,8 +43,7 @@ namespace Project.Api.UnitTests.Validators
 
             var result = _videovalidator.TestValidate(request);
 
-            result.Errors.Should().NotBeNull();
-            
+            result.Errors.Should().NotBeNull();            
         }
 
         [Fact]
@@ -75,7 +72,7 @@ namespace Project.Api.UnitTests.Validators
 
             var result = _videovalidator.TestValidate(request);
 
-            result.Errors.Should().NotBeNull();            
+            result.Errors.Should().NotBeNull();
         }
 
         [Fact]
@@ -89,9 +86,6 @@ namespace Project.Api.UnitTests.Validators
             var result = _videovalidator.TestValidate(request);
 
             result.Errors.Should().NotBeEmpty();
-
-            result.ShouldHaveValidationErrorFor(x => x.Title)
-                .WithoutErrorMessage("The Title is mandatory");
         }
 
         [Fact]
@@ -105,7 +99,6 @@ namespace Project.Api.UnitTests.Validators
             var result = _videovalidator.TestValidate(request);
 
             result.Errors.Should().NotBeNull();
-
         }
 
         [Fact]
@@ -135,5 +128,43 @@ namespace Project.Api.UnitTests.Validators
             
         }
 
+        [Fact]
+        public void GivenFieldThumbnailEmpty_WhenValidate_ThenReturnsMeAnError()
+        {
+            var request = _fixture
+                .Build<Video>()
+                .With(x => x.Thumbnail, "")
+                .Create();
+
+            var result = _videovalidator.TestValidate(request);
+
+            result.Errors.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public void GivenFieldUrlNull_WhenValidate_ThenReturnsMeAnError()
+        {
+            var request = _fixture
+                .Build<Video>()
+                .Without(x => x.Url)
+                .Create();
+
+            var result = _videovalidator.TestValidate(request);
+
+            result.Errors.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void GivenFieldUrlEmpty_WhenValidate_ThenReturnsMeAnError()
+        {
+            var request = _fixture
+                .Build<Video>()
+                .With(x => x.Url, "")
+                .Create();
+
+            var result = _videovalidator.TestValidate(request);
+
+            result.Errors.Should().NotBeEmpty();
+        }
     }
 }

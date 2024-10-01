@@ -23,9 +23,9 @@ builder.Services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOpti
 builder.Services.AddSingleton(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 builder.Services.AddSingleton<NewsService>();
 builder.Services.AddAutoMapper(typeof(EntityToViewModelMapping), typeof(ViewModelToEntityMapping));
-builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true);
+builder.Services.AddTransient<IValidator<News>, NewsValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
-builder.Services.AddScoped<IValidator<News>, NewsValidator>(); 
 
 builder.Services.AddCors();
 
