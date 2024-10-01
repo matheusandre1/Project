@@ -15,9 +15,9 @@ namespace Project.Api.Entities
         public string Slug { get; set; }
 
         [BsonElement("date")]
-        public DateTime PublishDate { get; set; }
+        public DateTime PublishDate { get; protected set; }
 
         [BsonElement("")]
-        public Status Status { get; set; }
+        public Status Status { get; protected set; }
     }
 }
