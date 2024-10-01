@@ -8,8 +8,7 @@ namespace Project.Api.Mappers
     {
         public ViewModelToEntityMapping()
         {
-            CreateMap<NewsViewModel, News>();
-            CreateMap<VideoViewModel, Video>();
+            CreateMap<NewsViewModel, News>();            
         }
 
     }

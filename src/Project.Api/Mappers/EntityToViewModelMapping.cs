@@ -9,7 +9,7 @@ namespace Project.Api.Mappers
         public EntityToViewModelMapping()
         {
             CreateMap<News, NewsViewModel>();
-            CreateMap<Video, VideoViewModel>();
+            CreateMap<Video, VideoViewModel>().ReverseMap();
         }
 
     }
